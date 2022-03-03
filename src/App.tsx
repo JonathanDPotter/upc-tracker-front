@@ -3,36 +3,59 @@ import { useGetAllGroupsQuery } from "./store/slices/groupSlice";
 // components
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import Group from "./components/Group/Group";
+import Login from "./components/Login/Login";
 // interfaces
 import { Igroup } from "./interfaces/group";
+// utils
+import { useAppSelector, useAppDispatch } from "./store/hooks";
+import { setToken, setUser } from "./store/slices/authSlice";
 // styles
 import "./App.scss";
 
 const App = () => {
+  // get data from redux store
   const { data, error, isLoading } = useGetAllGroupsQuery("");
   error && console.log(error);
+  const { user, token } = useAppSelector((state) => state.auth);
 
+  const dispatch = useAppDispatch();
+
+  // state for showing modals
   const [createOpen, setCreateOpen] = useState(false);
   const [groupOpen, setGroupOpen] = useState<Igroup | null>(null);
 
+  // element to display if user is authorized
+  const AuthPage = () => {
+    return (
+      <section className="groups">
+        <h2>Saved Groups</h2>
+        {isLoading && <h1>Loading...</h1>}
+        {data &&
+          data.map((datum: any) => (
+            <button onClick={() => setGroupOpen(datum)} key={datum._id}>
+              {datum.title}
+            </button>
+          ))}
+      </section>
+    );
+  };
+
+  const logOut = () => {
+    dispatch(setToken(""));
+    dispatch(setUser(""));
+  };
+
+  // main return
   return (
     <div className="app">
       <header>
         <h1>UPC Tracker</h1>
         <button onClick={() => setCreateOpen(true)}>Create New Group</button>
+        <button className="logout" onClick={logOut}>
+          Log Out
+        </button>
       </header>
-      <div className="main">
-        <h2>Saved Groups</h2>
-        <section className="groups">
-          {isLoading && <h1>Loading...</h1>}
-          {data &&
-            data.map((datum: any) => (
-              <button onClick={() => setGroupOpen(datum)} key={datum._id}>
-                {datum.title}
-              </button>
-            ))}
-        </section>
-      </div>
+      <div className="main">{user ? <AuthPage /> : <Login />}</div>
       {createOpen && <CreateGroup close={() => setCreateOpen(false)} />}
       {groupOpen && (
         <Group

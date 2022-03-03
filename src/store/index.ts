@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 // reducers
 import { groupApi } from "./slices/groupSlice";
+import authReducer from "./slices/authSlice";
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [groupApi.reducerPath]: groupApi.reducer,
+    auth: authReducer,
   },
   // get state from localStorage
   // preloadedState: loadState(),

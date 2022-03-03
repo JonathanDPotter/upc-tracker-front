@@ -11,6 +11,12 @@ header {
   width: 100vw;
   padding: 1rem;
   background-color: lightgrey;
+
+  .logout {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+  }
 }
 
 .main {

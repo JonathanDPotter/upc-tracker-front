@@ -1,5 +1,8 @@
 import React, { FC, FormEvent, useState } from "react";
 import { createPortal } from "react-dom";
+// utils
+import api from "../../api";
+// styles
 import "./CreateGroup.scss";
 
 interface Iprops {
@@ -31,8 +34,27 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
     setFormState({ ...formState, [id]: value });
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    
+    // converts the string from the upcs textarea to an array of numbers to send to the api
+    const upcsToNumberArray: number[] = [];
+
+    upcs
+      .trim()
+      .split("\n")
+      .forEach((upc) => upcsToNumberArray.push(parseInt(upc)));
+
+    try {
+      const response = await api.createGroup({
+        title,
+        upcs: upcsToNumberArray,
+      });
+      console.log(response);
+      window.location.reload();
+    } catch (error: any) {
+      console.log(error);
+    }
   };
 
   if (portal) {

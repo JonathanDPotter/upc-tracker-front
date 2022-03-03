@@ -5,7 +5,7 @@ export interface Igroup extends Document {
   upcs: number[];
 }
 
-export interface IgroupUpdate {
+export interface IgroupUpload {
   title: string;
   upcs: number[];
 }

@@ -43,23 +43,28 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+
+    // converts the string from the upcs textarea to an array of numbers to send to the api
     const upcsToNumberArray: number[] = [];
+
     upcs
       .trim()
       .split("\n")
       .forEach((upc) => upcsToNumberArray.push(parseInt(upc)));
+
     try {
-      console.log(upcsToNumberArray);
       const response = await api.updateGroup(id, {
         title,
         upcs: upcsToNumberArray,
       });
       console.log(response);
+      window.location.reload();
     } catch (error: any) {
       console.log(error);
     }
   };
 
+  // runs once when component renders filling the textarea with a well-formatted string from the array of numbers
   useEffect(() => {
     savedUpcs &&
       savedUpcs.forEach((upc) => {
