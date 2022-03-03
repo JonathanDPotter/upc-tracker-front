@@ -1,0 +1,14 @@
+@use "../../theme";
+
+.modal {
+  @include theme.modal;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
+  }
+}

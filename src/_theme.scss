@@ -1,0 +1,43 @@
+@mixin modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .card {
+    height: 80vh;
+    width: 80vw;
+    padding: 1rem;
+    max-width: 1000px;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 30px;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 80%;
+
+      .label-input {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        
+        input,
+        textarea {
+          border: 2px solid black;
+          border-radius: 5px;
+          resize: none;
+          max-width: 70%;
+        }
+      }
+    }
+  }
+}

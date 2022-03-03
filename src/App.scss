@@ -1,0 +1,26 @@
+@use "./theme";
+
+header {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  top: 0;
+  left: 0;
+  height: 20vh;
+  width: 100vw;
+  padding: 1rem;
+  background-color: lightgrey;
+}
+
+.main {
+  margin-top: 20vh;
+  width: 100vw;
+  height: fit-content;
+  padding: 1rem;
+
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,8 +1,16 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  top: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "Press Start 2P", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +18,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+button,
+.btn {
+  height: 1.5rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0 1rem;
+  font-family: inherit;
+  max-width: fit-content;
 }
