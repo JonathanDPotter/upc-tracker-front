@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useAppSelector } from "./store/hooks";
+import { useGetAllGroupsQuery } from "./store/slices/groupSlice";
 
-function App() {
+const App = () => {
+  const { data, error, isLoading } = useGetAllGroupsQuery("");
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>UPC Tracker</h1>
+      <h2>Saved Groups</h2>
+      <div className="groups">
+        {data && data.map((datum: any) => <h3>{datum.title}</h3>)}
+      </div>
     </div>
   );
-}
+};
 
 export default App;

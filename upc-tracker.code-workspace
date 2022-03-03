@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../../express-apps/upc-tracker-back"
+	}
+],
+  "settings": {}
+}
