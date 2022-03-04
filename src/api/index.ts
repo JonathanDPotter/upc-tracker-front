@@ -10,8 +10,10 @@ const getAllGroups = async () => {
   return response;
 };
 
-const createGroup = async (group: IgroupUpload) => {
-  const response = await axios.post(`${baseUrl}/api/group/`, group);
+const createGroup = async (token: string, group: IgroupUpload) => {
+  const response = await axios.post(`${baseUrl}/api/group/`, group, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response;
 };
 
@@ -20,11 +22,16 @@ const updateGroup = async (_id: string, group: IgroupUpload) => {
   return response;
 };
 
+const register = async (user: InewUser) => {
+  const response = await axios.post(`${baseUrl}/api/user/register`, user);
+  console.log(response);
+};
+
 const login = async (user: InewUser) => {
   const response = await axios.post(`${baseUrl}/api/user/login`, user);
   return response;
 };
 
-const api = { getAllGroups, updateGroup, createGroup, login };
+const api = { getAllGroups, updateGroup, createGroup, register, login };
 
 export default api;

@@ -2,29 +2,38 @@ import React, { FC, FormEvent, useState } from "react";
 import { createPortal } from "react-dom";
 // utils
 import api from "../../api";
+import { useAppSelector } from "../../store/hooks";
 // styles
 import "./CreateGroup.scss";
 
 interface Iprops {
   close: () => void;
 }
+
 interface IformState {
   title: string;
   upcs: string;
 }
 
 const CreateGroup: FC<Iprops> = ({ close }) => {
+  // get portal for modal render
   const portal = document.getElementById("portal");
 
+  // get auth from redux
+  const { token } = useAppSelector((state) => state.auth);
+
+  // local state for form
   const initialState: IformState = { title: "", upcs: "" };
 
   const [formState, setFormState] = useState(initialState);
   const { title, upcs } = formState;
 
+  // handle change and submit for form
   const handleChange = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = event.currentTarget;
+    // prevents non-digits from being entered into the upc input
     if (id === "upcs") {
       const numbers = /[\d\s]/;
       const total = value.split("");
@@ -36,7 +45,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    
+
     // converts the string from the upcs textarea to an array of numbers to send to the api
     const upcsToNumberArray: number[] = [];
 
@@ -46,11 +55,13 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
       .forEach((upc) => upcsToNumberArray.push(parseInt(upc)));
 
     try {
-      const response = await api.createGroup({
-        title,
-        upcs: upcsToNumberArray,
-      });
-      console.log(response);
+      if (token) {
+        const response = await api.createGroup(token, {
+          title,
+          upcs: upcsToNumberArray,
+        });
+        console.log(response);
+      }
       window.location.reload();
     } catch (error: any) {
       console.log(error);

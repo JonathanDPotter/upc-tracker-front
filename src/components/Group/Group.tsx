@@ -2,6 +2,8 @@ import React, { FC, FormEvent, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 // utils
 import api from "../../api";
+// styles
+import "./Group.scss";
 
 interface Iprops {
   id: string;

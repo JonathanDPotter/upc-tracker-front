@@ -25,8 +25,15 @@ header {
   height: fit-content;
   padding: 1rem;
 
-  section {
+  .groups {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    button {
+      width: 70vw !important;
+      height: 3rem;
+      font-size: large;
+      margin: 0.5rem 0;
+    }
   }
 }

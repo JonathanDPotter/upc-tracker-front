@@ -50,10 +50,14 @@ const App = () => {
     <div className="app">
       <header>
         <h1>UPC Tracker</h1>
-        <button onClick={() => setCreateOpen(true)}>Create New Group</button>
-        <button className="logout" onClick={logOut}>
-          Log Out
-        </button>
+        {user && (
+          <button onClick={() => setCreateOpen(true)}>Create New Group</button>
+        )}
+        {user && (
+          <button className="logout" onClick={logOut}>
+            Log Out
+          </button>
+        )}
       </header>
       <div className="main">{user ? <AuthPage /> : <Login />}</div>
       {createOpen && <CreateGroup close={() => setCreateOpen(false)} />}

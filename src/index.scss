@@ -34,5 +34,12 @@ button,
   border-radius: 5px;
   padding: 0 1rem;
   font-family: inherit;
-  max-width: fit-content;
+  width: fit-content;
+  background-color: whitesmoke;
+
+  &:focus,
+  &:active {
+    background-color: black;
+    color: white;
+  }
 }

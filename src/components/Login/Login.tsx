@@ -3,37 +3,64 @@ import React, { useState, FormEvent } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { setToken, setUser } from "../../store/slices/authSlice";
 import api from "../../api";
+// styles
+import "./Login.scss";
 
 const Login = () => {
   const dispatch = useAppDispatch();
 
   // form state for login
-  const initialState = { username: "", password: "" };
+  const initialState = {
+    username: "",
+    password: "",
+    key: "",
+    newUser: false,
+  };
   const [formState, setFormState] = useState(initialState);
-  const { username, password } = formState; //destructure for easier use
+  const { username, password, key, newUser } = formState; //destructure for easier use
 
   // event handlers for login form change and submission
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
     const { id, value } = event.currentTarget;
-    setFormState({ ...formState, [id]: value });
+    if (id === "newUser") {
+      setFormState({ ...formState, newUser: !newUser });
+    } else {
+      setFormState({ ...formState, [id]: value });
+    }
   };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
+      if (newUser) await api.register({ username, password, key });
       const response = await api.login({ username, password });
-      console.log(response);
-      await dispatch(setToken(response.data.token));
-      await dispatch(setUser(username));
+
+      if (response.data.token) {
+        dispatch(setToken(response.data.token));
+        dispatch(setUser(username));
+      } else {
+        window.alert(response.data.message);
+        setFormState(initialState);
+      }
     } catch (error: any) {
-      console.log(error);
+      window.alert(error.message);
     }
   };
 
   return (
     <section className="login">
-      <h1>Login</h1>
+      <h1>{newUser ? "Register" : "Login"}</h1>
       <form action="submit" onSubmit={handleSubmit}>
+        <div className="label-input">
+          <label htmlFor="newUser">New User?</label>
+          <input
+            type="checkbox"
+            name="newUser"
+            id="newUser"
+            checked={newUser}
+            onChange={handleChange}
+          />
+        </div>
         <div className="label-input">
           <label htmlFor="username">Username</label>
           <input
@@ -45,16 +72,30 @@ const Login = () => {
           />
         </div>
         <div className="label-input">
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
+            autoComplete="new-password"
             onChange={handleChange}
             value={password}
           />
         </div>
-        <input type="submit" value="submit" />
+        {newUser && (
+          <div className="label-input">
+            <label htmlFor="key">Api Key</label>
+            <input
+              type="password"
+              name="key"
+              id="key"
+              autoComplete="new-password"
+              onChange={handleChange}
+              value={key}
+            />
+          </div>
+        )}
+        <input type="submit" value="submit" className="btn" />
       </form>
     </section>
   );
