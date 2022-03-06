@@ -1,3 +1,30 @@
+.side-by-side {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: fit-content;
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .upcs {
+    min-width: 45%;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 80%;
+    padding: .5rem;
+  }
+
+  form {
+    width: 45%;
+    .label-input {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
 button {
   width: 50%;
 }

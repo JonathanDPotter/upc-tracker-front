@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGetAllGroupsQuery } from "./store/slices/groupSlice";
 // components
 import CreateGroup from "./components/CreateGroup/CreateGroup";
@@ -9,6 +9,7 @@ import { Igroup } from "./interfaces/group";
 // utils
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { setToken, setUser } from "./store/slices/authSlice";
+import api from "./api";
 // styles
 import "./App.scss";
 
@@ -45,6 +46,18 @@ const App = () => {
     dispatch(setUser(""));
   };
 
+  const apiKeyRequest = () => {
+    // fill this out
+  };
+
+  useEffect(() => {
+    api.validate(token).then((result) => {
+      if (result.status !== 200) {
+        logOut();
+      }
+    });
+  }, [token]);
+
   // main return
   return (
     <div className="app">
@@ -53,9 +66,13 @@ const App = () => {
         {user && (
           <button onClick={() => setCreateOpen(true)}>Create New Group</button>
         )}
-        {user && (
+        {user ? (
           <button className="logout" onClick={logOut}>
             Log Out
+          </button>
+        ) : (
+          <button className="logout" onClick={apiKeyRequest}>
+            request api key
           </button>
         )}
       </header>

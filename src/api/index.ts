@@ -22,6 +22,20 @@ const updateGroup = async (_id: string, group: IgroupUpload) => {
   return response;
 };
 
+const deleteGroup = async (_id: string, token: string) => {
+  const response = await axios.delete(`${baseUrl}/api/group/${_id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
+const validate = async (token: string | null) => {
+  const response = await axios.get(`${baseUrl}/api/user/validate`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response;
+};
+
 const register = async (user: InewUser) => {
   const response = await axios.post(`${baseUrl}/api/user/register`, user);
   console.log(response);
@@ -32,6 +46,14 @@ const login = async (user: InewUser) => {
   return response;
 };
 
-const api = { getAllGroups, updateGroup, createGroup, register, login };
+const api = {
+  getAllGroups,
+  updateGroup,
+  createGroup,
+  register,
+  login,
+  deleteGroup,
+  validate,
+};
 
 export default api;

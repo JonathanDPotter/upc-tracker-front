@@ -29,14 +29,22 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        
+
         input,
         textarea {
           border: 2px solid black;
           border-radius: 5px;
           resize: none;
           max-width: 70%;
+          padding-left: .5rem;
         }
+        textarea {
+          padding: 0.5rem;
+        }
+      }
+      .btn {
+        width: 70%;
+        float: left;
       }
     }
   }
