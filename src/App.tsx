@@ -15,7 +15,7 @@ import "./App.scss";
 
 const App = () => {
   // get data from redux store
-  const { data, error, isLoading } = useGetAllGroupsQuery("");
+  const { data, error, isLoading, refetch } = useGetAllGroupsQuery("");
   error && console.log(error);
   const { user, token } = useAppSelector((state) => state.auth);
 
@@ -56,7 +56,7 @@ const App = () => {
         logOut();
       }
     });
-  }, [token]);
+  }, []);
 
   // main return
   return (

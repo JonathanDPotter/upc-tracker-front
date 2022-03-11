@@ -17,8 +17,12 @@ const createGroup = async (token: string, group: IgroupUpload) => {
   return response;
 };
 
-const updateGroup = async (_id: string, group: IgroupUpload) => {
-  const response = await axios.put(`${baseUrl}/api/group/${_id}`, group);
+const updateGroup = async (_id: string, token: string, group: IgroupUpload) => {
+  console.log(_id);
+  console.log(group);
+  const response = await axios.put(`${baseUrl}/api/group/${_id}`, group, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
   return response;
 };
 

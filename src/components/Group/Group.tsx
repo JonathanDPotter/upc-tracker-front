@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import { createPortal } from "react-dom";
 // utils
 import api from "../../api";
@@ -25,9 +25,6 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
   // get auth token from redux store
   const { token } = useAppSelector((state) => state.auth);
 
-  // variable to hold the upcs as a string for the textarea
-  let upcsToString = "";
-
   // local state for form data
   const initialState: IformState = {
     title: savedTitle,
@@ -36,6 +33,9 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
 
   const [formState, setFormState] = useState(initialState);
   const { title, upcs } = formState;
+
+  // variable to hold the name of the submit button used
+  const [submitter, setSubmitter] = useState<string | null>(null);
 
   // handles form change and submission
   const handleChange = (
@@ -62,13 +62,28 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
       .split("\n")
       .forEach((upc) => upcsToNumberArray.push(parseInt(upc)));
 
-    try {
-      const response = await api.updateGroup(id, {
-        title,
-        upcs: upcsToNumberArray,
+    let newArray: number[] = [...savedUpcs];
+
+    if (submitter === "add") {
+      upcsToNumberArray.forEach((upc) => newArray.push(upc));
+    } else if (submitter === "delete") {
+      upcsToNumberArray.forEach((upc) => {
+        newArray = newArray.filter((savedUpc) => savedUpc !== upc);
       });
-      console.log(response);
-      window.location.reload();
+    }
+    // removes duplicate upcs
+    const noDupes = new Set(newArray);
+    const finalArray = [...noDupes];
+
+    try {
+      if (token) {
+        const response = await api.updateGroup(id, token, {
+          title,
+          upcs: finalArray,
+        });
+        console.log(response);
+        window.location.reload();
+      }
     } catch (error: any) {
       console.log(error);
     }
@@ -117,7 +132,18 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <input type="submit" value="add upcs" className="btn" />
+              <input
+                type="submit"
+                value="add upcs"
+                className="btn"
+                onClick={() => setSubmitter("add")}
+              />
+              <input
+                type="submit"
+                value="remove upcs"
+                className="btn"
+                onClick={() => setSubmitter("delete")}
+              />
             </form>
           </div>
           <button onClick={close}>cancel</button>
