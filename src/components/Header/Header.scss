@@ -1,0 +1,36 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 20vh;
+  width: 100vw;
+  padding: 1rem;
+  background-color: lightgrey;
+  display: grid;
+  grid-template-areas:
+    "title title title"
+    "create create logout";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  justify-items: center;
+
+  h1 {
+    grid-area: title;
+    font-size: 2rem;
+  }
+
+  button {
+    height: 2rem;
+    width: 90%;
+  }
+
+  .create-new {
+    grid-area: create;
+  }
+
+  .logout {
+    grid-area: logout;
+    top: 15vh;
+    right: 1rem;
+  }
+}

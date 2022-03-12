@@ -142,13 +142,13 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
               </div>
               <input
                 type="submit"
-                value="add all"
+                value="add"
                 className="btn"
                 onClick={() => setSubmitter("add")}
               />
               <input
                 type="submit"
-                value="remove all"
+                value="remove"
                 className="btn"
                 onClick={() => setSubmitter("delete")}
               />
@@ -157,7 +157,9 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
           <div className="buttons">
             <button onClick={copyToClipboard}>Copy Saved</button>
             <button onClick={close}>cancel</button>
-            <button className="delete" onClick={deleteGroup}>Delete</button>
+            <button className="delete" onClick={deleteGroup}>
+              Delete
+            </button>
           </div>
         </div>
       </div>,

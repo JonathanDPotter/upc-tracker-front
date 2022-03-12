@@ -1,6 +1,10 @@
 import React, { useState, FC } from "react";
+// utils
 import { useAppSelector } from "../../store/hooks";
+// components
 import CreateGroup from "../CreateGroup/CreateGroup";
+// styles
+import "./Header.scss";
 
 interface Iprops {
   logOut: () => void;
@@ -21,7 +25,7 @@ const Header: FC<Iprops> = ({ logOut }) => {
     <header>
       <h1>UPC Tracker</h1>
       {user && (
-        <button onClick={() => setCreateOpen(true)}>Create New Group</button>
+        <button className="create-new" onClick={() => setCreateOpen(true)}>Create New Group</button>
       )}
       {user ? (
         <button className="logout" onClick={logOut}>

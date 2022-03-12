@@ -33,9 +33,10 @@
         grid-area: "saved";
 
         p {
-          height: 1.5rem;
           width: 100%;
-          line-height: 1.5rem;
+          height: 1.2rem;
+          line-height: 1.2rem;
+          font-size: 0.7rem;
           &:nth-child(even) {
             background-color: lightgrey;
           }
