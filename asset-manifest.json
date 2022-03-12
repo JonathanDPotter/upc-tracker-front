@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/JonathanDPotter/static/css/main.f0642303.css",
-    "main.js": "/JonathanDPotter/static/js/main.91508fc2.js",
-    "index.html": "/JonathanDPotter/index.html",
-    "main.f0642303.css.map": "/JonathanDPotter/static/css/main.f0642303.css.map",
-    "main.91508fc2.js.map": "/JonathanDPotter/static/js/main.91508fc2.js.map"
+    "main.css": "/static/css/main.f0642303.css",
+    "main.js": "/static/js/main.91508fc2.js",
+    "index.html": "/index.html",
+    "main.f0642303.css.map": "/static/css/main.f0642303.css.map",
+    "main.91508fc2.js.map": "/static/js/main.91508fc2.js.map"
   },
   "entrypoints": [
     "static/css/main.f0642303.css",
