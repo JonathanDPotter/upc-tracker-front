@@ -3,7 +3,7 @@ import axios from "axios";
 import { IgroupUpload } from "../interfaces/group";
 import { InewUser } from "../interfaces/user";
 
-const baseUrl = "http://localhost:1337";
+const baseUrl = "https://upc-tracker.herokuapp.com/";
 
 const getAllGroups = async () => {
   const response = await axios.get(baseUrl + "/api/group/");
