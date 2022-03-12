@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/JonathanDPotter/upc-tracker-front/static/css/main.f0642303.css",
+    "main.js": "/JonathanDPotter/upc-tracker-front/static/js/main.f4105201.js",
+    "index.html": "/JonathanDPotter/upc-tracker-front/index.html",
+    "main.f0642303.css.map": "/JonathanDPotter/upc-tracker-front/static/css/main.f0642303.css.map",
+    "main.f4105201.js.map": "/JonathanDPotter/upc-tracker-front/static/js/main.f4105201.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f0642303.css",
+    "static/js/main.f4105201.js"
+  ]
+}
