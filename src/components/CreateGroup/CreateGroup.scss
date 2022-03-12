@@ -3,12 +3,27 @@
 .modal {
   @include theme.modal;
 
-  .card {
+  .create {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
+    textarea {
+      height: 50vh;
+    }
 
+    input {
+      height: 2rem;
+    }
+
+    textarea,
+    input {
+      font-family: inherit;
+    }
+
+    button, .btn {
+      width: 50%;
+    }
   }
 }

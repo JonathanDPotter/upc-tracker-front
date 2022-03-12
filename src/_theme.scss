@@ -1,3 +1,7 @@
+@mixin border {
+  border: 2px solid black;
+}
+
 @mixin modal {
   position: fixed;
   top: 0;
@@ -11,19 +15,21 @@
   justify-content: center;
 
   .card {
-    height: 80vh;
+    height: 90vh;
     width: 80vw;
     padding: 1rem;
     max-width: 1000px;
     background-color: white;
-    border: 3px solid black;
+    @include border;
     border-radius: 30px;
+
     form {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
       height: 80%;
+      width: 100%;
 
       .label-input {
         width: 100%;
@@ -32,19 +38,15 @@
 
         input,
         textarea {
-          border: 2px solid black;
+          @include border;
           border-radius: 5px;
           resize: none;
           max-width: 70%;
-          padding-left: .5rem;
+          padding-left: 0.5rem;
         }
         textarea {
           padding: 0.5rem;
         }
-      }
-      .btn {
-        width: 70%;
-        float: left;
       }
     }
   }

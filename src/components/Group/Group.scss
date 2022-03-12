@@ -1,30 +1,97 @@
-.side-by-side {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: fit-content;
+@use "../../theme";
 
-  h2 {
-    font-size: 1rem;
-  }
+.modal {
+  @include theme.modal;
 
-  .upcs {
-    min-width: 45%;
-    border: 2px solid black;
-    border-radius: 10px;
-    height: 80%;
-    padding: .5rem;
-  }
+  .edit {
+    .group-title {
+      font-size: 1.5rem;
+      text-align: center;
+    }
 
-  form {
-    width: 45%;
-    .label-input {
-      display: flex;
-      flex-direction: column;
+    .side-by-side {
+      display: grid;
+      grid-template-areas: "saved form";
+      grid-template-columns: 1fr 1fr;
+      justify-items: center;
+      padding: 0.5rem;
+      height: 70vh;
+
+      ::-webkit-scrollbar {
+        height: 90%;
+        width: 1rem;
+      }
+      ::-webkit-scrollbar-track {
+        background: lightgrey;
+        border: 1px solid grey;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: grey;
+      }
+
+      .saved {
+        grid-area: "saved";
+
+        p {
+          height: 1.5rem;
+          width: 100%;
+          line-height: 1.5rem;
+          &:nth-child(even) {
+            background-color: lightgrey;
+          }
+        }
+      }
+
+      .edit-form {
+        grid-area: "form";
+        overflow: hidden;
+        padding: 0.5rem;
+
+        input,
+        textarea {
+          min-width: 100%;
+        }
+
+        .label-input {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          textarea {
+            height: 40vh;
+            overflow-y: auto;
+          }
+        }
+      }
+
+      .saved,
+      .edit-form {
+        width: 98% !important;
+        height: 100%;
+        @include theme.border;
+        border-radius: 3px;
+        overflow-y: auto;
+      }
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-areas:
+        "left right"
+        "bottom bottom";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      justify-items: center;
+
+      button {
+        width: 100%;
+        margin: 0.5rem auto;
+      }
+
+      .delete {
+        width: 200%;
+        grid-area: "bottom";
+      }
     }
   }
-}
-
-button {
-  width: 50%;
 }

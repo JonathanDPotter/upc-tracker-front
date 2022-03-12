@@ -35,7 +35,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
     const { id, value } = event.currentTarget;
     // prevents non-digits from being entered into the upc input
     if (id === "upcs") {
-      const numbers = /[\d\s]/;
+      const numbers = /[\d\s]*/;
       const total = value.split("");
       const newChar = total[total.length - 1];
       if (!numbers.test(newChar)) return;
@@ -53,12 +53,16 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
       .trim()
       .split("\n")
       .forEach((upc) => upcsToNumberArray.push(parseInt(upc)));
-
+    
+    // eliminates duplicate UPCs 
+    const noDupes = [...new Set(upcsToNumberArray)]
+    
+    // send to api
     try {
       if (token) {
         const response = await api.createGroup(token, {
           title,
-          upcs: upcsToNumberArray,
+          upcs: noDupes,
         });
         console.log(response);
       }
@@ -71,7 +75,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
   if (portal) {
     return createPortal(
       <div className="modal">
-        <div className="card">
+        <div className="create card">
           <h2>Create Group</h2>
           <form action="submit" onSubmit={handleSubmit}>
             <div className="label-input">
@@ -90,7 +94,6 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
                 name="upcs"
                 id="upcs"
                 cols={13}
-                rows={10}
                 value={upcs}
                 onChange={handleChange}
               ></textarea>

@@ -14,16 +14,18 @@ header {
 
   .logout {
     position: fixed;
-    top: 1rem;
+    top: 15vh;
     right: 1rem;
   }
 }
 
 .main {
   margin-top: 20vh;
+  min-height: 80vh;
   width: 100vw;
   height: fit-content;
   padding: 1rem;
+  overflow-y: none;
 
   .groups {
     display: flex;

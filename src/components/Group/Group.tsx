@@ -37,13 +37,12 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
   // variable to hold the name of the submit button used
   const [submitter, setSubmitter] = useState<string | null>(null);
 
-  // handles form change and submission
   const handleChange = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = event.currentTarget;
     if (id === "upcs") {
-      const numbers = /[\d\s]/;
+      const numbers = /[\d\s]*/;
       const total = value.split("");
       const newChar = total[total.length - 1];
       if (!numbers.test(newChar)) return;
@@ -72,14 +71,14 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
       });
     }
     // removes duplicate upcs
-    const noDupes = new Set(newArray);
-    const finalArray = [...noDupes];
+    const noDupes = [...new Set(newArray)];
 
+    // send to api
     try {
       if (token) {
         const response = await api.updateGroup(id, token, {
           title,
-          upcs: finalArray,
+          upcs: noDupes,
         });
         console.log(response);
         window.location.reload();
@@ -96,21 +95,30 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
     }
   };
 
+  const copyToClipboard = async () => {
+    let savedToString: string[] = [];
+    savedUpcs.forEach((upc) => {
+      savedToString.push(upc.toString());
+    });
+
+    await navigator.clipboard.writeText(savedToString.join(" \n"));
+  };
+
   if (portal) {
     return createPortal(
       <div className="modal">
-        <div className="card">
-          <h2>{title}</h2>
+        <div className="edit card">
+          <p className="group-title">{title}</p>
           <div className="side-by-side">
             <div className="saved">
-              <h2>Saved UPCs</h2>
+              <p className="saved-label">Saved UPCs</p>
               <div className="upcs">
                 {savedUpcs.map((upc, i) => {
                   return <p key={`title${i}`}>{upc}</p>;
                 })}
               </div>
             </div>
-            <form action="submit" onSubmit={handleSubmit}>
+            <form className="edit-form" action="submit" onSubmit={handleSubmit}>
               <div className="label-input">
                 <label htmlFor="title">Title</label>
                 <input
@@ -134,20 +142,23 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
               </div>
               <input
                 type="submit"
-                value="add upcs"
+                value="add all"
                 className="btn"
                 onClick={() => setSubmitter("add")}
               />
               <input
                 type="submit"
-                value="remove upcs"
+                value="remove all"
                 className="btn"
                 onClick={() => setSubmitter("delete")}
               />
             </form>
           </div>
-          <button onClick={close}>cancel</button>
-          <button onClick={deleteGroup}>Delete</button>
+          <div className="buttons">
+            <button onClick={copyToClipboard}>Copy Saved</button>
+            <button onClick={close}>cancel</button>
+            <button className="delete" onClick={deleteGroup}>Delete</button>
+          </div>
         </div>
       </div>,
       portal
