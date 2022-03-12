@@ -17,10 +17,6 @@ const Header: FC<Iprops> = ({ logOut }) => {
   // state for showing modal
   const [createOpen, setCreateOpen] = useState(false);
 
-  const apiKeyRequest = () => {
-    // fill this out
-  };
-
   return (
     <header>
       <h1>UPC Tracker</h1>
@@ -36,7 +32,7 @@ const Header: FC<Iprops> = ({ logOut }) => {
           href="mailto: jonathan.d.potter@outlook.com?
         subject=UPC TRACKER API KEY REQUEST"
         >
-          <button className="logout">request api key</button>
+          <button className="api-request">request api key</button>
         </a>
       )}
       {createOpen && <CreateGroup close={() => setCreateOpen(false)} />}
