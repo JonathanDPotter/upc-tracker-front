@@ -3,8 +3,7 @@ import React, { useState, FormEvent } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { setToken, setUser } from "../../store/slices/authSlice";
 import api from "../../api";
-// styles
-import "./Login.scss";
+
 
 const Login = () => {
   const dispatch = useAppDispatch();

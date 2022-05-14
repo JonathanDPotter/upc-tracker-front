@@ -8,7 +8,8 @@ import { useAppSelector, useAppDispatch } from "./store/hooks";
 import { setToken, setUser } from "./store/slices/authSlice";
 import api from "./api";
 // styles
-import "./App.scss";
+import "./index.css";
+
 
 const App = () => {
   // get auth data from redux store

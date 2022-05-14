@@ -3,8 +3,6 @@ import { createPortal } from "react-dom";
 // utils
 import api from "../../api";
 import { useAppSelector } from "../../store/hooks";
-// styles
-import "./CreateGroup.scss";
 
 interface Iprops {
   close: () => void;
