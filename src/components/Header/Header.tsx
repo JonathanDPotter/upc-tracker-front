@@ -25,10 +25,7 @@ const Header: FC<Iprops> = ({ logOut }) => {
         {user ? (
           <button onClick={logOut}>Log Out</button>
         ) : (
-          <a
-            href="mailto: jonathan.d.potter@outlook.com?
-          subject=UPC TRACKER API KEY REQUEST"
-          >
+          <a href="mailto: jonathan.d.potter@outlook.com?subject=UPC TRACKER API KEY REQUEST">
             <button>request api key</button>
           </a>
         )}

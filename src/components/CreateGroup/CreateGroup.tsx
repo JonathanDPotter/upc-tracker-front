@@ -73,8 +73,8 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
   if (portal) {
     return createPortal(
       <div className="modal">
-        <div className="create card">
-          <h2>Create Group</h2>
+        <div className="card flex flex-col items-center">
+          <h2 className="card-title">Create Group</h2>
           <form action="submit" onSubmit={handleSubmit}>
             <div className="label-input">
               <label htmlFor="title">Title</label>
@@ -98,7 +98,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
             </div>
             <input type="submit" value="save" className="btn" />
           </form>
-          <button onClick={close}>cancel</button>
+          <button className="w-[30vw]" onClick={close}>cancel</button>
         </div>
       </div>,
       portal

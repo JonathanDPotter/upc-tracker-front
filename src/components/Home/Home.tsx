@@ -15,8 +15,8 @@ const Home = () => {
   const [groupOpen, setGroupOpen] = useState<Igroup | null>(null);
 
   return (
-    <div className="flex flex-col align-center">
-      <h2 className="text-xl w-fit mx-auto my-2">Saved Groups</h2>
+    <div className="page flex flex-col align-center">
+      <h2 className="page-title">Saved Groups</h2>
       {isLoading && <h1>Loading...</h1>}
       {data &&
         data.map((datum: any) => (

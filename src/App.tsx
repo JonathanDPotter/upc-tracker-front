@@ -9,6 +9,7 @@ import { setToken, setUser } from "./store/slices/authSlice";
 import api from "./api";
 // styles
 import "./index.css";
+import Footer from "./components/Footer/Footer";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
     <div className="app">
       <Header logOut={logOut} />
       <div className="main">{user ? <Home /> : <Login />}</div>
+      <Footer />
     </div>
   );
 };

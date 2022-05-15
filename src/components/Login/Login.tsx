@@ -47,8 +47,8 @@ const Login = () => {
   };
 
   return (
-    <section className="login">
-      <h1>{newUser ? "Register" : "Login"}</h1>
+    <div className="page">
+      <h2 className="page-title">{newUser ? "Register" : "Login"}</h2>
       <form action="submit" onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="newUser">New User?</label>
@@ -58,7 +58,7 @@ const Login = () => {
             id="newUser"
             checked={newUser}
             onChange={handleChange}
-          />
+            />
         </div>
         <div className="label-input">
           <label htmlFor="username">Username</label>
@@ -68,6 +68,7 @@ const Login = () => {
             id="username"
             onChange={handleChange}
             value={username}
+            autoComplete="username"
           />
         </div>
         <div className="label-input">
@@ -96,7 +97,7 @@ const Login = () => {
         )}
         <input type="submit" value="submit" className="btn" />
       </form>
-    </section>
+    </div>
   );
 };
 

@@ -105,18 +105,22 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
   if (portal) {
     return createPortal(
       <div className="modal">
-        <div className="edit card">
-          <p className="group-title">{title}</p>
-          <div className="side-by-side">
-            <div className="saved">
-              <p className="saved-label">Saved UPCs</p>
+        <div className="card">
+          <p className="card-title">{title}</p>
+          <div className="flex flex-row">
+            <div className="h-full w-1/3 text-center">
+              <p className="text-lg">Saved UPCs</p>
               <div className="upcs">
                 {savedUpcs.map((upc, i) => {
                   return <p key={`title${i}`}>{upc}</p>;
                 })}
               </div>
             </div>
-            <form className="edit-form" action="submit" onSubmit={handleSubmit}>
+            <form
+              className="h-full w-2/3"
+              action="submit"
+              onSubmit={handleSubmit}
+            >
               <div className="label-input">
                 <label htmlFor="title">Title</label>
                 <input
@@ -152,10 +156,14 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
               />
             </form>
           </div>
-          <div className="buttons">
-            <button onClick={copyToClipboard}>Copy Saved</button>
-            <button onClick={close}>cancel</button>
-            <button className="delete" onClick={deleteGroup}>
+          <div className="flex justify-around w-full">
+            <button className="w-[30vw]" onClick={copyToClipboard}>
+              Copy Saved
+            </button>
+            <button className="w-[30vw]" onClick={close}>
+              Cancel
+            </button>
+            <button className="w-[30vw]" onClick={deleteGroup}>
               Delete
             </button>
           </div>

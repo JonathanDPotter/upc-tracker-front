@@ -6,8 +6,52 @@
   @apply box-border;
 }
 
+html,
+body {
+  @apply overflow-x-hidden relative;
+}
+
+@layer base {
+  button,
+  .btn {
+    @apply bg-blue-300 p-2 m-2 rounded;
+  }
+
+  form {
+    @apply h-[50vh] flex flex-col items-center justify-around w-[90vw] mx-auto rounded bg-amber-100 p-2;
+  }
+
+  input {
+    @apply w-[50vw] max-w-[90%] border-2 border-slate-400 rounded bg-inherit;
+  }
+
+  textarea {
+    @apply bg-inherit border border-2 border-slate-400 rounded resize-none p-2;
+  }
+}
+
 @layer components {
-  button {
-    @apply bg-blue-300 p-2 m-2;
+  .page {
+    @apply min-h-[70vh];
+  }
+
+  .page-title {
+    @apply text-xl w-fit mx-auto my-2;
+  }
+
+  .label-input {
+    @apply w-[90%] flex flex-row justify-between;
+  }
+
+  .modal {
+    @apply fixed top-0 left-0 h-[100vh] w-[100vw] bg-slate-500/50 flex items-center justify-center;
+  }
+
+  .card {
+    @apply bg-white rounded p-2 w-[95vw];
+  }
+
+  .card-title {
+    @apply text-lg w-fit mx-auto my-2;
   }
 }
