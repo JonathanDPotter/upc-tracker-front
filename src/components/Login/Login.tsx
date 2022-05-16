@@ -58,6 +58,7 @@ const Login = () => {
             id="newUser"
             checked={newUser}
             onChange={handleChange}
+            className="ml-4 mr-auto w-fit mt-1"
             />
         </div>
         <div className="label-input">
@@ -95,7 +96,7 @@ const Login = () => {
             />
           </div>
         )}
-        <input type="submit" value="submit" className="btn" />
+        <input type="submit" value="submit" className="btn w-fit" />
       </form>
     </div>
   );

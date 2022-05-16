@@ -16,9 +16,9 @@ const Header: FC<Iprops> = ({ logOut }) => {
   const [createOpen, setCreateOpen] = useState(false);
 
   return (
-    <header className="h-[25vh] bg-slate-300 flex flex-col items-center justify-around">
-      <h1 className="text-3xl w-fit">UPC Tracker</h1>
-      <div className="container w-full flex flex-row justify-around">
+    <header className="h-[25vh] w-[100vw] sm:h-[15vh] bg-slate-300 flex flex-col sm:flex-row items-center justify-around">
+      <h1 className="text-3xl w-fit whitespace-nowrap">UPC Tracker</h1>
+      <div className="container w-fit flex flex-row justify-around">
         {user && (
           <button onClick={() => setCreateOpen(true)}>Create New Group</button>
         )}

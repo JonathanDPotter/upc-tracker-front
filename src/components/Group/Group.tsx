@@ -145,13 +145,13 @@ const Group: FC<Iprops> = ({ id, savedTitle, savedUpcs, close }) => {
               <input
                 type="submit"
                 value="add"
-                className="btn"
+                className="btn w-3/4"
                 onClick={() => setSubmitter("add")}
               />
               <input
                 type="submit"
                 value="remove"
-                className="btn"
+                className="btn w-3/4"
                 onClick={() => setSubmitter("delete")}
               />
             </form>

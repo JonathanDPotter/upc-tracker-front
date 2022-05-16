@@ -84,6 +84,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
                 id="title"
                 value={title}
                 onChange={handleChange}
+                maxLength={25}
               />
             </div>
             <div className="label-input">
@@ -96,7 +97,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <input type="submit" value="save" className="btn" />
+            <input type="submit" value="save" className="btn w-fit" />
           </form>
           <button className="w-[30vw]" onClick={close}>cancel</button>
         </div>

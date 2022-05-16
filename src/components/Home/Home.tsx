@@ -20,7 +20,11 @@ const Home = () => {
       {isLoading && <h1>Loading...</h1>}
       {data &&
         data.map((datum: any) => (
-          <button onClick={() => setGroupOpen(datum)} key={datum._id}>
+          <button
+            className="mx-auto w-3/4"
+            onClick={() => setGroupOpen(datum)}
+            key={datum._id}
+          >
             {datum.title}
           </button>
         ))}

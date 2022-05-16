@@ -14,25 +14,29 @@ body {
 @layer base {
   button,
   .btn {
-    @apply bg-blue-300 p-2 m-2 rounded;
+    @apply bg-blue-300 px-4 py-2 m-2 rounded max-w-[800px];
   }
 
   form {
-    @apply h-[50vh] flex flex-col items-center justify-around w-[90vw] mx-auto rounded bg-amber-100 p-2;
+    @apply h-[50vh] flex flex-col items-center justify-around w-[90vw] max-w-[600px] mx-auto rounded bg-amber-100 p-2;
   }
 
   input {
-    @apply w-[50vw] max-w-[90%] border-2 border-slate-400 rounded bg-inherit;
+    @apply w-[50vw] max-w-[90%] sm:max-w-[300px] border-2 border-slate-400 rounded bg-inherit;
   }
 
   textarea {
     @apply bg-inherit border border-2 border-slate-400 rounded resize-none p-2;
   }
+
+  p {
+    @apply whitespace-pre-wrap;
+  }
 }
 
 @layer components {
   .page {
-    @apply min-h-[70vh];
+    @apply min-h-[70vh] sm:min-h-[80vh];
   }
 
   .page-title {
@@ -48,7 +52,7 @@ body {
   }
 
   .card {
-    @apply bg-white rounded p-2 w-[95vw];
+    @apply bg-white rounded p-2 w-[95vw] max-w-[800px];
   }
 
   .card-title {
