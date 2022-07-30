@@ -3,8 +3,7 @@ import React, { useState, FormEvent } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { setToken, setUser } from "../../store/slices/authSlice";
 import api from "../../api";
-// styles
-import "./Login.scss";
+
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -47,8 +46,8 @@ const Login = () => {
   };
 
   return (
-    <section className="login">
-      <h1>{newUser ? "Register" : "Login"}</h1>
+    <div className="page">
+      <h2 className="page-title">{newUser ? "Register" : "Login"}</h2>
       <form action="submit" onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="newUser">New User?</label>
@@ -58,7 +57,8 @@ const Login = () => {
             id="newUser"
             checked={newUser}
             onChange={handleChange}
-          />
+            className="ml-4 mr-auto w-fit mt-1"
+            />
         </div>
         <div className="label-input">
           <label htmlFor="username">Username</label>
@@ -68,6 +68,7 @@ const Login = () => {
             id="username"
             onChange={handleChange}
             value={username}
+            autoComplete="username"
           />
         </div>
         <div className="label-input">
@@ -83,7 +84,7 @@ const Login = () => {
         </div>
         <input type="submit" value="submit" className="btn" />
       </form>
-    </section>
+    </div>
   );
 };
 

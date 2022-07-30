@@ -3,8 +3,6 @@ import { createPortal } from "react-dom";
 // utils
 import api from "../../api";
 import { useAppSelector } from "../../store/hooks";
-// styles
-import "./CreateGroup.scss";
 
 interface Iprops {
   close: () => void;
@@ -75,8 +73,8 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
   if (portal) {
     return createPortal(
       <div className="modal">
-        <div className="create card">
-          <h2>Create Group</h2>
+        <div className="card flex flex-col items-center">
+          <h2 className="card-title">Create Group</h2>
           <form action="submit" onSubmit={handleSubmit}>
             <div className="label-input">
               <label htmlFor="title">Title</label>
@@ -86,6 +84,7 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
                 id="title"
                 value={title}
                 onChange={handleChange}
+                maxLength={25}
               />
             </div>
             <div className="label-input">
@@ -98,9 +97,9 @@ const CreateGroup: FC<Iprops> = ({ close }) => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <input type="submit" value="save" className="btn" />
+            <input type="submit" value="save" className="btn w-fit" />
           </form>
-          <button onClick={close}>cancel</button>
+          <button className="w-[30vw]" onClick={close}>cancel</button>
         </div>
       </div>,
       portal

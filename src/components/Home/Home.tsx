@@ -15,12 +15,16 @@ const Home = () => {
   const [groupOpen, setGroupOpen] = useState<Igroup | null>(null);
 
   return (
-    <div className="groups">
-      <h2>Saved Groups</h2>
+    <div className="page flex flex-col align-center">
+      <h2 className="page-title">Saved Groups</h2>
       {isLoading && <h1>Loading...</h1>}
       {data &&
         data.map((datum: any) => (
-          <button onClick={() => setGroupOpen(datum)} key={datum._id}>
+          <button
+            className="mx-auto w-3/4"
+            onClick={() => setGroupOpen(datum)}
+            key={datum._id}
+          >
             {datum.title}
           </button>
         ))}

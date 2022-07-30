@@ -3,8 +3,6 @@ import React, { useState, FC } from "react";
 import { useAppSelector } from "../../store/hooks";
 // components
 import CreateGroup from "../CreateGroup/CreateGroup";
-// styles
-import "./Header.scss";
 
 interface Iprops {
   logOut: () => void;
