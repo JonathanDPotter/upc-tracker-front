@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/upc-tracker-front/static/css/main.e921a4e3.css",
-    "main.js": "/upc-tracker-front/static/js/main.40d43bc7.js",
+    "main.css": "/upc-tracker-front/static/css/main.a626fb06.css",
+    "main.js": "/upc-tracker-front/static/js/main.eb253151.js",
     "index.html": "/upc-tracker-front/index.html",
-    "main.e921a4e3.css.map": "/upc-tracker-front/static/css/main.e921a4e3.css.map",
-    "main.40d43bc7.js.map": "/upc-tracker-front/static/js/main.40d43bc7.js.map"
+    "main.a626fb06.css.map": "/upc-tracker-front/static/css/main.a626fb06.css.map",
+    "main.eb253151.js.map": "/upc-tracker-front/static/js/main.eb253151.js.map"
   },
   "entrypoints": [
-    "static/css/main.e921a4e3.css",
-    "static/js/main.40d43bc7.js"
+    "static/css/main.a626fb06.css",
+    "static/js/main.eb253151.js"
   ]
 }
