@@ -36,7 +36,7 @@ body {
 
 @layer components {
   .page {
-    @apply min-h-[70vh] sm:min-h-[80vh];
+    @apply min-h-[80vh] sm:min-h-[80vh];
   }
 
   .page-title {
