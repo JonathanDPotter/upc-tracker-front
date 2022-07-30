@@ -22,7 +22,7 @@ body {
   }
 
   input {
-    @apply w-[50vw] max-w-[90%] sm:max-w-[300px] border-2 border-slate-400 rounded bg-inherit;
+    @apply w-[50vw] max-w-[90%] sm:max-w-[300px] border-2 border-slate-400 rounded bg-inherit pl-[.5rem] ml-[.5rem];
   }
 
   textarea {
