@@ -13,11 +13,10 @@ const Login = () => {
   const initialState = {
     username: "",
     password: "",
-    key: "",
     newUser: false,
   };
   const [formState, setFormState] = useState(initialState);
-  const { username, password, key, newUser } = formState; //destructure for easier use
+  const { username, password, newUser } = formState; //destructure for easier use
 
   // event handlers for login form change and submission
   const handleChange = (event: FormEvent<HTMLInputElement>) => {
@@ -32,7 +31,7 @@ const Login = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      if (newUser) await api.register({ username, password, key });
+      if (newUser) await api.register({ username, password });
       const response = await api.login({ username, password });
 
       if (response.data.token) {
@@ -82,19 +81,6 @@ const Login = () => {
             value={password}
           />
         </div>
-        {newUser && (
-          <div className="label-input">
-            <label htmlFor="key">Api Key</label>
-            <input
-              type="password"
-              name="key"
-              id="key"
-              autoComplete="new-password"
-              onChange={handleChange}
-              value={key}
-            />
-          </div>
-        )}
         <input type="submit" value="submit" className="btn" />
       </form>
     </section>
